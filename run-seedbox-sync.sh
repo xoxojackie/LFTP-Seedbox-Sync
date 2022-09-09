@@ -20,4 +20,11 @@ create-lock-file () {
 }
 
 
+cleanup () {
+    [[ -e "$lockfile" ]] && rm "$lockfile"
+}
+
+
 create-lock-file
+
+cleanup
