@@ -25,7 +25,6 @@ create-lock-file () {
 
 get-ftp-pass () {
     ftp_pass=$(cat $ftp_pass_file)
-    echo "$ftp_pass"
 }
 
 # lftp-transfer () {
