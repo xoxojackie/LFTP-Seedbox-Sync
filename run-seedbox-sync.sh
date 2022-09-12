@@ -4,6 +4,10 @@
 # SEE THE README FOR IMPORTANT INSTRUCTIONS
 # BEFORE SETTING THESE OPTIONS:
 incoming_dir="$HOME/Incoming"
+outgoing_dir="$HOME/Outgoing"
+ftp_user="thewiz"
+ftp_pass_file="ftp-pass.secret"
+
 lftp_conf_location="lftp.conf"
 ##############################################################
 
@@ -18,6 +22,17 @@ create-lock-file () {
         touch "$lockfile"
     fi
 }
+
+get-ftp-pass () {
+    ftp_pass=$(cat $ftp_pass_file)
+    echo "$ftp_pass"
+}
+
+# lftp-transfer () {
+#     lftp << EOF
+#     source lftp.conf
+#     connect -u "$ftp_user":"$ftp_pass" -p "$ftp_port" "$ftp_address"
+# }
 
 move-tmp-dirs () {
     find "$incoming_dir" -name "*-tmp" | while read tmpdir; do
@@ -34,5 +49,6 @@ cleanup () {
 trap cleanup SIGINT SIGTERM
 
 create-lock-file
+get-ftp-pass
 move-tmp-dirs
 cleanup
