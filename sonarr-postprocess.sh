@@ -1,11 +1,17 @@
 #!/bin/bash
 
+# [[ $sonarr_eventtype == "Test" ]] && exit 0
+
 # removes the episode file
-[[ -e $sonarr_episodefile_sourcepath ]] && rm $sonarr_episodefile_sourcepath
+[[ -e "$sonarr_episodefile_sourcepath" ]] && rm "$sonarr_episodefile_sourcepath"
 
 # removes the directory, if the directory is not named *Sonarr*
-if [[ $sonarr_episodefile_sourcefolder =~ "sonarr" ]]
+# and it is empty
+if [[ "$sonarr_episodefile_sourcefolder" =~ "sonarr" ]]; then
     exit 0
-else
-    rm $sonarr_episodefile_sourcefolder
+elif
+    [[ -z $(ls -A "$sonarr_episodefile_sourcefolder") ]]; then
+        rm -r "$sonarr_episodefile_sourcefolder"
 fi
+
+exit 0
