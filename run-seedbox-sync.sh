@@ -7,7 +7,7 @@ incoming_dir="$HOME/Incoming"
 outgoing_dir="$HOME/Outgoing"
 ftp_user="thewiz"
 ftp_pass_file="ftp-pass.secret"
-
+ftp_address="avalon-iv.xojackie.xyz"
 lftp_conf_location="lftp.conf"
 ##############################################################
 
@@ -24,14 +24,14 @@ create-lock-file () {
 }
 
 get-ftp-pass () {
-    ftp_pass=$(cat $ftp_pass_file)
+    ftp_pass=$(cat "$ftp_pass_file")
 }
 
-# lftp-transfer () {
-#     lftp << EOF
-#     source lftp.conf
-#     connect -u "$ftp_user":"$ftp_pass" -p "$ftp_port" "$ftp_address"
-# }
+lftp-transfer () {
+    lftp << EOF
+    source lftp.conf
+    connect -u "$ftp_user":"$ftp_pass" -p "$ftp_port" "$ftp_address"
+}
 
 move-tmp-dirs () {
     find "$incoming_dir" -name "*-tmp" | while read tmpdir; do
