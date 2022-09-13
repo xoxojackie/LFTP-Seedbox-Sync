@@ -4,7 +4,7 @@
 # SEE THE README FOR IMPORTANT INSTRUCTIONS
 # BEFORE SETTING THESE OPTIONS:
 outgoing_dir="$HOME/outgoing"
-labels_to_process=("sonarr" "sonarr-4k" "radarr" "radarr-4k")
+labels_to_process=("sonarr" "sonarr-4k" "radarr" "radarr-4k" "sync")
 tmp_dir_labels=("sonarr" "sonarr-4k")
 label_conf_location="$HOME/.config/deluge/label.conf"
 ##############################################################
