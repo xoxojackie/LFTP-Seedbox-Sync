@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ $sonarr_eventtype == "Test" ]] && exit 0
+[[ $radarr_eventtype == "Test" ]] && exit 0
 
 # removes the episode file
 [[ -e "$sonarr_episodefile_sourcepath" ]] && rm "$sonarr_episodefile_sourcepath"
