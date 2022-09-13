@@ -9,6 +9,7 @@
 [x] don't forget a trap (not everyone loves systemd)\
 [] decide on logging in lftp script or leaving it up to the user\
 [] remove trailing slashes from paths in both scripts?\
+[] radarr postprocessing
 
 
 
