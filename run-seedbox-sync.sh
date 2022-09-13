@@ -1,15 +1,10 @@
 #!/bin/bash
 
-##############################################################
-# SEE THE README FOR IMPORTANT INSTRUCTIONS
-# BEFORE SETTING THESE OPTIONS:
+#########################################################################
+# outgoing_dir is on the remote machine, incoming_dir is local
+outgoing_dir="$HOME/outgoing"
 incoming_dir="$HOME/Incoming"
-outgoing_dir="$HOME/Outgoing"
-ftp_user="thewiz"
-ftp_pass_file="ftp-pass.secret"
-ftp_address="avalon-iv.xojackie.xyz"
-lftp_conf_location="lftp.conf"
-##############################################################
+#########################################################################
 
 set -x
 
@@ -23,14 +18,22 @@ create-lock-file () {
     fi
 }
 
-get-ftp-pass () {
-    ftp_pass=$(cat "$ftp_pass_file")
+source-ftp-options () {
+    if [[ -e ftp-options.conf ]]; then
+        source ftp-options.conf
+    else
+        echo "fpt-options.conf missing! Exiting!"
+        cleanup && exit 1
+    fi
 }
 
 lftp-transfer () {
     lftp << EOF
     source lftp.conf
     connect -u "$ftp_user":"$ftp_pass" -p "$ftp_port" "$ftp_address"
+    mirror -c -p -vvv --Move "$outgoing_dir"/ "$incoming_dir"/
+    quit
+EOF
 }
 
 move-tmp-dirs () {
@@ -48,6 +51,7 @@ cleanup () {
 trap cleanup SIGINT SIGTERM
 
 create-lock-file
-get-ftp-pass
+source-ftp-options
+lftp-transfer
 move-tmp-dirs
 cleanup
