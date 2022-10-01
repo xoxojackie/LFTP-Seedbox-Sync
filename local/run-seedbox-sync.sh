@@ -8,6 +8,8 @@ incoming_dir="$HOME/Incoming"
 
 set -x
 
+base_dir="$(dirname "$(readlink -f "$0")")"
+
 create-lock-file () {
     lockfile="/tmp/lftp-sb-sync.lock"
     if [[ -e "lockfile" ]]; then
@@ -19,8 +21,8 @@ create-lock-file () {
 }
 
 source-ftp-options () {
-    if [[ -e ftp-options.conf ]]; then
-        source ftp-options.conf
+    if [[ -e $base_dir/ftp-options.conf ]]; then
+        source $base_dir/ftp-options.conf
     else
         echo "fpt-options.conf missing! Exiting!"
         cleanup && exit 1
