@@ -12,5 +12,5 @@
 [x] radarr postprocessing\
 [] add safety logic to postprocessing script (make sure it only runs on import/upgrade)\
 [] move all options to two seperate files (one for remote)\
-[] learn how to use (getopts)[https://wiki.bash-hackers.org/howto/getopts_tutorial] to specify
+[] learn how to use [getopts](https://wiki.bash-hackers.org/howto/getopts_tutorial) to specify
 a config file, and maybe help and other options? idk I'll think about it.
