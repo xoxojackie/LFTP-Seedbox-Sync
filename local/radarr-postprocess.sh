@@ -5,6 +5,10 @@
 # removes the movie file
 [[ -e "$radarr_moviefile_sourcepath" ]] && rm "$radarr_moviefile_sourcepath"
 
+# delete sample.* and *.nfo files
+find "$radarr_moviefile_sourcefolder" -type f -name "sample.*" -delete
+find "$radarr_moviefile_sourcefolder" -type f -name "*.nfo" -delete
+
 # removes the directory, if the directory is not named *radarr*
 # and it is empty
 if [[ "$radarr_moviefile_sourcefolder" =~ "radarr" ]]; then

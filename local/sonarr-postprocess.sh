@@ -7,7 +7,7 @@
 
 # removes the directory, if the directory is not named *Sonarr*
 # and it is empty
-if [[ "$sonarr_episodefile_sourcefolder" =~ "sonarr" ]]; then
+if [[ "$sonarr_episodefile_sourcefolder" =~ "Sonarr" ]]; then
     exit 0
 elif
     [[ -z $(ls -A "$sonarr_episodefile_sourcefolder") ]]; then
