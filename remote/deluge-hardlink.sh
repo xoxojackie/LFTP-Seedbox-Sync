@@ -18,7 +18,7 @@ torrent_path=$3
 torrent=$torrent_path/$torrent_name
 
 get-label () {
-    label=$(grep $torrent_id $label_conf_location | awk -F '"' '{print $4}')
+    label=$(grep "$torrent_id" "$label_conf_location" | awk -F '"' '{print $4}')
 }
 
 check-label () {

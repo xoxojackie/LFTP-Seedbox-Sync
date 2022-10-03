@@ -22,9 +22,9 @@ create-lock-file () {
 
 source-ftp-options () {
     if [[ -e $base_dir/ftp-options.conf ]]; then
-        source $base_dir/ftp-options.conf
+        source "$base_dir/ftp-options.conf"
     else
-        echo "fpt-options.conf missing! Exiting!"
+        echo "ftp-options.conf missing! Exiting!"
         cleanup && exit 1
     fi
 }
@@ -41,7 +41,7 @@ EOF
 move-tmp-dirs () {
     find "$incoming_dir" -name "*-tmp" | while read tmpdir; do
         non_tmpdir=${tmpdir::-4}
-        mv "$tmpdir"/* $non_tmpdir
+        mv "$tmpdir"/* "$non_tmpdir"
         [[ -z $(ls -A "$tmpdir") ]] && rm -r "$tmpdir"
     done
 }
